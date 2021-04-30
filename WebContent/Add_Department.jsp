@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Add Department</title>
 </head>
 <body>
 <%
@@ -34,9 +34,5 @@
 	}catch(Exception e){ System.out.println(e);}  
 %>
 
-
-<!--  <script type="text/javascript">
-	alert("Department Added Successfully");
-</script> -->
 </body>
 </html>
