@@ -10,6 +10,7 @@
     <!-- Bootstrap CSS -->
    <link rel="stylesheet" href="css\bootstrap.min.css"> 
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   <script src="js\jquery-3.6.0.min.js"></script>
     <title>View Teachers</title>
     <script>
 		function fun(){
@@ -20,6 +21,24 @@
 				return false;
 			} 
 		}
+		
+		$(document).ready(function() {
+			$("#deptname").on("change", function() {
+				var dname = $("#deptname").val();
+
+				$.ajax({
+					url : "Course.jsp",
+					data : {
+						dname : dname
+					},
+					method : "POST",
+					success : function(data) {
+						$("#cname").html(data);
+
+					}
+				});
+			});
+		});
 	</script>
   </head>
 <body>
@@ -93,33 +112,9 @@
 					   <input type = "text" class="form-control" name = "tmobileno" id="tmobile" required placeholder = "Enter Mobile NO">
 				</div>
 				<div class="mb-3">
-					  <label for="cname" class="form-label">Course_Name</label>
-					  <select name="course_name" class="form-select" id = "cname" size="1">
-				<%
-						try{  
-							Class.forName("com.mysql.jdbc.Driver");  
-							Connection con=DriverManager.getConnection(  
-							"jdbc:mysql://localhost:3309/feedbackdb?autoReconnect=true&useSSL=false","root","vaishali@97");  
-							//here inventory db is database name, root is username and vaishali@97 is password  
-							Statement stmt=con.createStatement();  
-							ResultSet rs=stmt.executeQuery("select * from course");  
-							while(rs.next())  {
-							int courseid = rs.getInt(1);
-							String cname = rs.getString(2);
-				%>
-							<option value="<%=courseid %> "> <%=cname%></option>
-				<% 
-						}
-				%>
-						</select>
-				<% 
-						con.close();  
-						}catch(Exception e){ System.out.println(e);}  		
-				%>
-				</div>	
-				<div class="mb-3">
 	   				<label for="deptname" class="form-label">Department_Name</label>
 					<select name="dept_name" class="form-select" id = "deptname" size="1">
+					<option disabled selected>Select Department</option>
 						<%
 						try{  
 							Class.forName("com.mysql.jdbc.Driver");  
@@ -143,6 +138,13 @@
 							}catch(Exception e){ System.out.println(e);}  		
 						%>
 				</div>
+				<div class="mb-3">
+					  <label for="cname" class="form-label">Course_Name</label>
+					  <select name="course_name" class="form-select" id = "cname" size="1">
+					  <option disabled selected>Select Course</option>
+					  </select>
+				</div>	
+				
 	      	</div>
 	      	<div class="modal-footer">
 	        	<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
