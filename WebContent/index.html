@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="css\bootstrap.min.css"> 
+	
+    <title>Home Page</title>
+  </head>
+  
+  <header>
+	<nav class="navbar navbar-expand-lg navbar-dark sticky-top bg-dark shadow">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#">Student Feedback Management System</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNavDropdown">
+			  <ul class="navbar-nav ms-auto">
+				<li class="nav-item dropdown">
+				  <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+					Login
+				  </a>
+				  <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+					<li><a class="dropdown-item" href="AdminLogin.jsp">Admin Login</a></li>
+					<li><a class="dropdown-item" href="TeacherLogin.jsp">Teacher Login</a></li>
+					<li><a class="dropdown-item" href="StudentLogin.jsp">Student Login</a></li>
+				  </ul>
+				</li>
+				<li class="nav-item">
+				  <a class="nav-link active" aria-current="page" href="#">Home</a>
+				</li>	  
+				<li class="nav-item">
+				  <a class="nav-link text-white" href="#">About</a>
+				</li>
+			  </ul>
+			</div>
+		</div>
+	</nav>
+  </header>
+  
+   <body>
+	<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+		<div class="carousel-indicators">
+			<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+			<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+			<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+		</div>
+		<div class="carousel-inner">
+			<div class="carousel-item active">
+				<img src="images\three.jpg" height = "600px" class="d-block w-100" alt="...">
+			</div>
+			<div class="carousel-item ">
+				<img src="images\seven.jpg" height = "600px" class="d-block w-100" alt="...">
+			</div>
+			<div class="carousel-item">
+				<img src="images\four.jpg" height = "600px" class="d-block w-100" alt="...">
+			</div>
+		</div>
+		<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			<span class="visually-hidden">Previous</span>
+		</button>
+		<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+			<span class="carousel-control-next-icon" aria-hidden="true"></span>
+			<span class="visually-hidden">Next</span>
+		</button>
+	</div>
+  
+	<footer id="footer" style = "text-align: center;padding: 3px;margin-top:4px; background-color:gray; color: white;" >
+		<p class="float-right"><a href="#">Back to top</a></p>
+		<p>Copyright Feedback, &copy; 2021</p>
+	</footer>
+	
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+   <script src="js\bootstrap.min.js"></script>
+  </body>
+</html>
