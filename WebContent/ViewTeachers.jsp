@@ -344,8 +344,8 @@
 				      <th scope="col">Username</th>
 				      <th scope="col">Password</th>
 				      <th scope="col">MobileNo</th>
-				      <th scope="col">Course_Name</th>
 				      <th scope="col">Dept_Name</th>
+				      <th scope="col">Course_Name</th>
 				      <th scope="col">Delete</th>
 				      <th scope="col">Edit</th>
 				    </tr>

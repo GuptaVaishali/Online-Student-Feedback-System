@@ -40,7 +40,7 @@
 		<div class="card bg-light border-primary">
 		  <img src="images\report3.png"  height = "200" class="card-img-top" alt="...">
 		  <div class="card-body text-center">
-			<a class="btn btn-primary" href="ViewReport.jsp?user=<%=request.getParameter("username")%>&teacherid=<%=request.getParameter("teacherid")%>" role="button">View Report</a>
+			<a class="btn btn-primary" href='ViewReport.jsp?teacherid=<%=request.getParameter("teacherid")%>' role="button">View Report</a>
 		  </div>
 		</div>
 	  </div>
@@ -48,7 +48,7 @@
 		<div class="card bg-light border-primary">
 		  <img src="images\pass2.jpg" height = "200" class="card-img-top" alt="...">
 		  <div class="card-body text-center">
-			<a class="btn btn-primary" href="ChangePassword.jsp?user=<%=request.getParameter("username")%>" role="button">Change Password</a>
+			<a class="btn btn-primary" href='ChangeTeacherPassword.jsp?teacherid=<%=request.getParameter("teacherid")%>' role="button">Change Password</a>
 		  </div>
 		</div>
 	  </div>

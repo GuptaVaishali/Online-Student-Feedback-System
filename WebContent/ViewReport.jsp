@@ -21,7 +21,7 @@
   		<div class="collapse navbar-collapse" id="navbarNav">
   			<ul class="navbar-nav px-5 ms-auto">
   				<li class="nav-item">
-      				<a class="nav-link text-white" href="TeacherHome.jsp">Home</a>
+      				<a class="nav-link text-white" href='TeacherHome.jsp?teacherid=<%=request.getParameter("teacherid")%>'>Home</a>
     			</li>
     			<li class="nav-item">
       				<a class="nav-link text-white" href="index.html">Sign out</a>

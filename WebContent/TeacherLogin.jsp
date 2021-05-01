@@ -66,7 +66,7 @@ try{
 		ResultSet rs=stmt.executeQuery();  
 		if(rs.next() == true){
 			int teacherid = rs.getInt(1);
-			response.sendRedirect("TeacherHome.jsp?username="+user+"&teacherid="+teacherid); 
+			response.sendRedirect("TeacherHome.jsp?teacherid="+teacherid); 
 		} 
 		else{
 			response.sendRedirect("TeacherLogin.jsp");

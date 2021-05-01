@@ -10,7 +10,7 @@
     <!-- Bootstrap CSS -->
    <link rel="stylesheet" href="css\bootstrap.min.css"> 
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Change password</title>
+    <title>Change Teacher password</title>
   </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark sticky-top bg-dark shadow">
@@ -21,7 +21,7 @@
   		<div class="collapse navbar-collapse" id="navbarNav">
   			<ul class="navbar-nav px-5 ms-auto">
   				<li class="nav-item">
-      				<a class="nav-link text-white" href="TeacherHome.jsp">Home</a>
+      				<a class="nav-link text-white" href='TeacherHome.jsp?teacherid=<%=request.getParameter("teacherid")%>'>Home</a>
     			</li>
     			<li class="nav-item">
       				<a class="nav-link text-white" href="index.html">Sign out</a>
@@ -39,8 +39,8 @@
         </div>
       </div>
     </header>
-	<form name = "changepassform" action = "ChangePassword.jsp"  method = "get" style = "max-width:300px; margin:auto;">
-		<input type="hidden" name="username" value="<%=request.getParameter("user")%>"> 
+	<form name = "changepassform" action = "ChangeTeacherPassword.jsp"  method = "get" style = "max-width:300px; margin:auto;">
+		<input type="hidden" name="teacherid" value="<%=request.getParameter("teacherid")%>"> 
 		<div class="mb-3">
 			<label for="opassword" class="form-label">Old Password</label>
      		 <input type = "password" class="form-control" id = "opassword" name = "oldpass" required placeholder = "Enter Old Password">
@@ -57,54 +57,57 @@
      		<input type = "submit" class="btn btn-primary w-100" value = "Change Password">
 		</div>
 	</form>
-<% 
-		if(session.getAttribute("error_message") != null){
-%>
+	
+	<% 	if(session.getAttribute("message") != null){  %>
 			<div class='alert alert-danger alert-dismissible fade show' role="alert">
-	  			<%=session.getAttribute("error_message") %>
+	  			<%=session.getAttribute("message") %>
 	  			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 			</div>
-<%		} %>
+		<% session.removeAttribute("message"); }	%>
+		
 	
 	<%
-	//String error_message = "";
 	try{
-		String user = request.getParameter("username");
+		String teacherid = request.getParameter("teacherid");
 		String opass = request.getParameter("oldpass");
 		String npass = request.getParameter("newpass");
 		String cpass = request.getParameter("confirmpass");
-			//System.out.println(user + " " + opass + " " + npass + " " + cpass);
+		if(teacherid!= null && opass!= null){
+			System.out.println(teacherid + " " + opass + " " + npass + " " + cpass);
 			Class.forName("com.mysql.jdbc.Driver");  
 			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3309/feedbackdb?autoReconnect=true&useSSL=false"
 							                             ,"root","vaishali@97"); 
-			PreparedStatement stmt=con.prepareStatement("select * from teacher where tusername = ?");
-			stmt.setString(1,user);
+			PreparedStatement stmt=con.prepareStatement("select * from teacher where teacher_id = ?");
+			stmt.setString(1,teacherid);
 			ResultSet rs=stmt.executeQuery();  
 			if(rs.next()){
 				if(rs.getString("tpassword").equals(opass)){
-					if(npass.equals(cpass)){
-						PreparedStatement st=con.prepareStatement("update teacher set tpassword = ? where tusername = ?");
+					if(opass.equals(npass)){
+						session.setAttribute("message","Old Password and New Password are same..Please choose some different Password");
+						response.sendRedirect("ChangeTeacherPassword.jsp?teacherid="+teacherid);
+					}
+					else if(npass.equals(cpass)){
+						PreparedStatement st=con.prepareStatement("update teacher set tpassword = ? where teacher_id = ?");
 						st.setString(1,npass);
-						st.setString(2,user);
+						st.setString(2,teacherid);
 						int r = st.executeUpdate(); 
 						System.out.println("row updated " + r);
-					//	error_message = "Password Updated..please login again";
 						response.sendRedirect("TeacherLogin.jsp");
-					//	String message = "Password Updated..please login with updated password";
 						session.setAttribute("message","Password Updated..please login with updated password");
 					}
 					else{
-						session.setAttribute("error_message","New Password and Confirm Password donot Match");
-						response.sendRedirect("ChangePassword.jsp?user=" + user);
+						session.setAttribute("message","New Password and Confirm Password don't Match");
+						response.sendRedirect("ChangeTeacherPassword.jsp?teacherid=" + teacherid);
 					}
 				} 
 				else{
-					session.setAttribute("error_message", "Wrong Password");	
-					response.sendRedirect("ChangePassword.jsp?user=" + user);
+					session.setAttribute("message", "Wrong Password");	
+					response.sendRedirect("ChangeTeacherPassword.jsp?teacherid= " + teacherid);
 				}
-			}
-			con.close();  
-		}catch(Exception e){ System.out.println(e);} 
+		}
+			con.close(); 
+		}
+	}catch(Exception e){ System.out.println(e);} 
 %>
 	<footer id="footer" style = "text-align: center;padding: 3px;margin-top:4px; background-color:gray; color: white;" >
 		<p class="float-right"><a href="#">Back to top</a></p>

@@ -21,7 +21,7 @@
   		<div class="collapse navbar-collapse" id="navbarNav">
   			<ul class="navbar-nav px-5 ms-auto">
   				<li class="nav-item">
-      				<a class="nav-link text-white" href="TeacherHome.jsp">Home</a>
+      				<a class="nav-link text-white" href='TeacherHome.jsp?teacherid=<%=request.getParameter("teacherid")%>'>Home</a>
     			</li>
     			<li class="nav-item">
       				<a class="nav-link text-white" href="index.html">Sign out</a>
@@ -61,6 +61,8 @@ try{
 		
 		ResultSet rs = stmt.executeQuery(); 
 		
+		if(rs.next()){
+		
 		System.out.println("result created");
 	%>
 		
@@ -73,7 +75,6 @@ try{
 		    </tr>
 		  </thead>
 	<% 	
-		if(rs.next()){
 			String tname = rs.getString(1);
 			String subname = rs.getString(2);
 			int q1 = rs.getInt(3);
@@ -146,8 +147,12 @@ try{
 	</div>	
 <%
 		} 
+		else{
+			out.println("Feedback has not submitted yet");
+		}
 		con.close();  
 	}catch(Exception e){}	
+	
 %>
 <footer id="footer" style = "text-align: center;padding: 3px;margin-top:4px; background-color:gray; color: white;" >
 		<p class="float-right"><a href="#">Back to top</a></p>
