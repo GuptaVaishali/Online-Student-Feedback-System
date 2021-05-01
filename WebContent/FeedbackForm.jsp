@@ -167,7 +167,7 @@
   		<div class="collapse navbar-collapse" id="navbarNav">
   			<ul class="navbar-nav px-5 ms-auto">
   				<li class="nav-item">
-      				<a class="nav-link text-white" href="StudentHome.html">Home</a>
+      				<a class="nav-link text-white" href="StudentHome.jsp?studentid=<%=request.getParameter("studentid")" > Home </a>
     			</li>
     			<li class="nav-item">
       				<a class="nav-link text-white" href="index.html">Sign out</a>
