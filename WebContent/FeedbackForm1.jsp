@@ -63,13 +63,13 @@
 			
 			int row = st.executeUpdate(); 
 			System.out.println("feedback submitted " + row);
-			session.setAttribute("message1","Feedback Submitted");
-			response.sendRedirect("StudentHome.jsp?studentid="+sid); 
+			session.setAttribute("message","Feedback Submitted");
+			response.sendRedirect("FeedbackForm.jsp?studentid="+sid+ "&teacherid=" + teacherid); 
 		}
 		else{
-			session.setAttribute("message1","Feedback has been submitted for this teacher already");
+			session.setAttribute("message","Feedback has been submitted for this teacher already");
 			System.out.println("Feedback has been submitted for this teacher already");
-			response.sendRedirect("StudentHome.jsp?studentid="+sid); 
+			response.sendRedirect("FeedbackForm.jsp?studentid="+sid +"&teacherid=" + teacherid); 
 		}	
 		con.close();  
 	}catch(Exception e){}	

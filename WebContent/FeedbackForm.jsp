@@ -167,7 +167,7 @@
   		<div class="collapse navbar-collapse" id="navbarNav">
   			<ul class="navbar-nav px-5 ms-auto">
   				<li class="nav-item">
-      				<a class="nav-link text-white" href="StudentHome.jsp?studentid=<%=request.getParameter("studentid")" > Home </a>
+      				<a class="nav-link text-white" href="StudentHome.jsp?studentid=<%=request.getParameter("studentid")%>"> Home </a>
     			</li>
     			<li class="nav-item">
       				<a class="nav-link text-white" href="index.html">Sign out</a>
@@ -193,14 +193,15 @@
 		   	<label for="subname" class="form-label">Subject_Name</label>
 			<select name="subject_name" class = "form-select" id = "subname" size="1">
 		<%
-		int teacherid = Integer.parseInt((request.getParameter("teacher_name")).trim());
+	//	int teacherid = Integer.parseInt((request.getParameter("teacher_name")).trim());
+	//	System.out.println(teacherid);
 		try{  
 			Class.forName("com.mysql.jdbc.Driver");  
 			Connection con=DriverManager.getConnection(  
 			"jdbc:mysql://localhost:3309/feedbackdb?autoReconnect=true&useSSL=false","root","vaishali@97");  
 			//here feedback db is database name, root is username and vaishali@97 is password  
 			Statement stmt=con.createStatement();  
-			ResultSet rs=stmt.executeQuery("select * from subject where tid = '" + teacherid + "'");  
+			ResultSet rs=stmt.executeQuery("select * from subject where tid = '" +  request.getParameter("teacher_name") + "'");  
 			while(rs.next())  {
 			int subid = rs.getInt(1);
 			String subname = rs.getString(2);
@@ -515,12 +516,12 @@
 		
 	</form>
 	
-	 <%  if( session.getAttribute("message1") != null){ %> 
+	 <%  if( session.getAttribute("message") != null){ %> 
     		<div class='alert alert-danger alert-dismissible fade show' role="alert">
-	  			<%=session.getAttribute("message1")%>
+	  			<%=session.getAttribute("message")%>
 	  			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 			</div>
-	<% session.removeAttribute("message1"); }	%> 
+	<% session.removeAttribute("message"); }	%> 
 	
 	<footer id="footer" style = "text-align: center;padding: 3px;margin-top:3px; background-color:gray; color: white;" >
 		<p class="float-right"><a href="#">Back to top</a></p>

@@ -21,7 +21,7 @@
   		<div class="collapse navbar-collapse" id="navbarNav">
   			<ul class="navbar-nav px-5 ms-auto">
   				<li class="nav-item">
-      				<a class="nav-link text-white" href="StudentHome.jsp">Home</a>
+      				<a class="nav-link text-white" href="StudentHome.jsp?studentid=<%=request.getParameter("studentid")%>">Home</a>
     			</li>
     			<li class="nav-item">
       				<a class="nav-link text-white" href="index.html">Sign out</a>
@@ -52,7 +52,7 @@
 		Connection con=DriverManager.getConnection(  
 		"jdbc:mysql://localhost:3309/feedbackdb?autoReconnect=true&useSSL=false","root","vaishali@97");   
 		Statement stmt=con.createStatement();  
-		ResultSet rs=stmt.executeQuery("select * from teacher");  
+		ResultSet rs=stmt.executeQuery("select distinct teacher_id,tname from teacher,subject where teacher.teacher_id = subject.tid");  
 		while(rs.next())  {
 		int tid = rs.getInt(1);
 		String tname = rs.getString(2);
